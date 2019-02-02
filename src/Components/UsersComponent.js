@@ -3,6 +3,7 @@ import User from './GithubUserComponent';
 import UserInfo from './UserInfoComponent';
 
 class Users extends Component{
+    
     constructor(){
         super()
         this.state={
@@ -11,13 +12,15 @@ class Users extends Component{
             showUserData:false,
             currentUserId:null,
             currentUserAvatar:null,
-            currentUserName:null
+            currentUserName:null,
+            lastIndex:17
         }
         this.handleClick=this.handleClick.bind(this)
+        
     }
 
     handleClick(e,user){
-      console.log(user)  
+        
       this.setState(prevStat=>(
         {users:prevStat.users,
          loading:prevStat.loading,
@@ -29,6 +32,15 @@ class Users extends Component{
         )      
     }
 
+    handleLoadMore(e,i){
+    
+         this.setState(
+            {
+             lastIndex:i+5   
+            }
+            )  
+    }
+
     componentDidMount(){
         document.title = "Users";
         fetch("https://api.github.com/users")
@@ -37,12 +49,16 @@ class Users extends Component{
         
     }
     render(){
-        let userNames=this.state.users.map(u=><User key={u.id} show={this.handleClick} userData={u}/>)
+
+        let userNames = this.state.users.slice(0,this.state.lastIndex).map(u=><User key={u.id} show={this.handleClick} userData={u}/>)
+       
         return(
             <div>
                {this.state.loading && <h5>Fetching Data...</h5>} 
                <div className="row">
-                    <div className="col-xs-6 col-sm-4 col-lg-2" style={{"borderRight": "thick solid #A9A9A9"}}><div className="badge badge-info">Users</div>{userNames}</div>
+                    <div className="col-xs-6 col-sm-4 col-lg-2" style={{"borderRight": "thick solid #A9A9A9"}}><div className="badge badge-info">Users</div>{userNames}
+                    <button onClick={(event)=>this.handleLoadMore(event,this.state.lastIndex)} className="btn btn-success btn-sm">Load more ...</button>
+                    </div>
                     <div className="col-xs-6 col-sm-8 col-lg-10">
                     {this.state.showUserData &&  <UserInfo userName={this.state.currentUserName}
                                                            photo={this.state.currentUserAvatar}

@@ -18,14 +18,14 @@ class App extends Component {
               </a>
               <Link to="/" className="navbar-brand">Github Users</Link>
               
-               <ul className="navbar-nav mr-auto">
-                  <li className="navbar-item navbar-right">
+               <ul className="navbar-nav">
+                  <li className="navbar-item">
                     <Link to="/" className="nav-link">Home</Link>
                   </li>
-                  <li className="navbar-item navbar-right">
+                  <li className="navbar-item">
                     <Link to="/users" className="nav-link">Users</Link>
                   </li>
-                  <li className="navbar-item navbar-right">
+                  <li className="navbar-item">
                     <Link to="/about" className="nav-link">About</Link>
                   </li>
                 </ul>
