@@ -16,16 +16,16 @@ class App extends Component {
               <a className="navbar-brand" href="https://github.com/walidahmedelsayed/React-Task" target="_blank">
                 <img src={Logo} width="30" height="30" alt="Task Github Repo"/>
               </a>
-              <Link to="/" className="navbar-brand">My Task</Link>
+              <Link to="/" className="navbar-brand">Github Users</Link>
               
                <ul className="navbar-nav mr-auto">
-                  <li className="navbar-item">
+                  <li className="navbar-item navbar-right">
                     <Link to="/" className="nav-link">Home</Link>
                   </li>
-                  <li className="navbar-item">
+                  <li className="navbar-item navbar-right">
                     <Link to="/users" className="nav-link">Users</Link>
                   </li>
-                  <li className="navbar-item">
+                  <li className="navbar-item navbar-right">
                     <Link to="/about" className="nav-link">About</Link>
                   </li>
                 </ul>
