@@ -56,8 +56,8 @@ class Users extends Component{
             <div>
                {this.state.loading && <h5>Fetching Data...</h5>} 
                <div className="row">
-                    <div className="col-xs-6 col-sm-4 col-lg-2" style={{"borderRight": "thick solid #A9A9A9"}}><div className="badge badge-info">Users</div>{userNames}
-                    <button onClick={(event)=>this.handleLoadMore(event,this.state.lastIndex)} className="btn btn-success btn-sm">Load more ...</button>
+        <div className="col-xs-6 col-sm-4 col-lg-2" style={{"borderRight": "thick solid #A9A9A9"}}>{!this.state.loading &&<div className="badge badge-info">Users</div>}{userNames}
+                    {!this.state.loading && <button onClick={(event)=>this.handleLoadMore(event,this.state.lastIndex)} className="btn btn-success btn-sm">Load more ...</button>}
                     </div>
                     <div className="col-xs-6 col-sm-8 col-lg-10">
                     {this.state.showUserData &&  <UserInfo userName={this.state.currentUserName}
