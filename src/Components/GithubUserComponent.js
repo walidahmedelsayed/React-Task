@@ -9,7 +9,7 @@ class User extends Component{
 
     render(){
         return(
-            <div onClick={this.props.show} value={this.state.user.login}>
+            <div onClick={(event)=>this.props.show(event,this.state.user)} >
                 {this.state.user.login}
             </div>
         )

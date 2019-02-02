@@ -6,16 +6,25 @@ class Users extends Component{
         this.state={
             users:[],
             loading:true,
-            currentUser:""
+            currentUserId:null,
+            currentUserAvatar:null,
+            currentUserName:null
         }
         this.handleClick=this.handleClick.bind(this)
     }
 
-    handleClick(e){
-       this.setState({currentUser:e.nativeEvent.target.attributes.value.nodeValue}) 
-       console.log(e.nativeEvent.target.attributes.value.nodeValue)
-       
+    handleClick(e,user){
+      console.log(user)  
+      this.setState(prevStat=>(
+        {users:prevStat.users,
+         loading:prevStat.loading,
+         currentUserName:user.login,
+         currentUserAvatar:user.avatar_url,
+         currentUserId:user.id   
+        }) 
+        )      
     }
+
     componentDidMount(){
         document.title = "Users";
         fetch("https://api.github.com/users")
@@ -30,7 +39,11 @@ class Users extends Component{
                {this.state.loading && <h5>Fetching Data...</h5>} 
                <div className="row">
                     <div className="col-xs-6 col-sm-4 col-lg-2" style={{"borderRight": "thick solid #A9A9A9"}}>{userNames}</div>
-                    <div className="col-xs-6 col-sm-8 col-lg-10">{this.state.currentUser}</div>                   
+                    <div className="col-xs-6 col-sm-8 col-lg-10">
+                    {this.state.currentUserName}
+                    <img src={this.state.currentUserAvatar} />
+                    
+                    </div>                   
                </div>             
             </div>
         )
